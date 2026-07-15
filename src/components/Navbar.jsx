@@ -1,0 +1,71 @@
+import { Menu, ShoppingCart, X } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+const Navbar = ({ cartCount }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  return (
+    <header className="sticky top-0 z-50 bg-[#FAF7F0]/95 backdrop-blur-sm border-b border-[#211F1A]/10">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-[#B4491F] flex items-center justify-center text-[#FAF7F0] font-bold text-sm">
+            D
+          </span>
+          <span className="font-['Fraunces'] text-xl text-[#211F1A]">
+            Divergent<span className="text-[#B4491F]">POS</span>
+          </span>
+        </Link>
+
+        <ul className="hidden md:flex items-center gap-8"></ul>
+
+        {/* Cart + mobile menu */}
+        <div className="flex items-center gap-4">
+          <Link to="/cart" className="relative">
+            <ShoppingCart className="w-6 h-6 text-[#211F1A]" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#B4491F] text-[#FAF7F0] text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-[#211F1A]"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile nav panel */}
+      {isMenuOpen && (
+        <ul className="md:hidden flex flex-col gap-1 px-4 pb-4 bg-[#FAF7F0] border-t border-[#211F1A]/10">
+          {navLinks.map((link) => (
+            <li key={link.label}>
+              <Link
+                to={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-2 text-sm font-medium text-[#211F1A]/80 hover:text-[#B4491F]"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
