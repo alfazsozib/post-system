@@ -1,18 +1,41 @@
-# React + Vite
+# DivergentPOS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Point of Sale (POS) web application built with React.  
+This project allows users to browse products, search items, filter by category, view product details, and manage a shopping cart.
 
-Currently, two official plugins are available:
+I built this project as an assignment to improve my understanding of React concepts, API integration, state management, and modern UI development practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- Browse products
+- Search products
+- Filter products by category
+- View product details
+- Add products to cart
+- Increase/decrease cart quantity
+- Theme switcher (Light/Dark/System mode)
+- Responsive design for mobile and desktop
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 🛠️ Technologies Used
 
-Note: This will impact Vite dev & build performances.
+- React.js
+- Vite
+- Tailwind CSS
+- Shadcn UI
+- React Router
+- Lucide React Icons
+- DummyJSON API
+- Local Storage
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+src
+├── assets # Keep images and icons
+├── components # Reusable UI components
+├── pages # Application pages
+├── hooks # Custom React hooks
+├── context # React context (theme management)
+├── lib # API functions and utilities
+└── App.jsx
+└── main.jsx
+└── index.css
