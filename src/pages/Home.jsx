@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
-import useDebounce from "../hooks/UseDebounce";
+import useCart from "../hooks/useCart";
+import useDebounce from "../hooks/useDebounce";
 import {
   getCategories,
   getProducts,
@@ -19,7 +20,10 @@ const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [cartCount, setCartCount] = useState(0);
+
+  const { cartItem, addToCart } = useCart();
+
+  const cartCount = cartItem.reduce((sum, item) => sum + item.quantity, 0);
 
   const debouncedQuery = useDebounce(searchQuery, 300);
 
@@ -37,11 +41,12 @@ const HomePage = () => {
     fetchCategories();
   }, []);
 
-  //   filter option
+  // Re-fetch products whenever the search query or category changes.
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       setError("");
+
       try {
         let data;
 
@@ -66,8 +71,7 @@ const HomePage = () => {
   }, [debouncedQuery, selectedCategory]);
 
   const handleAddToCart = (product) => {
-    setCartCount((prev) => prev + 1);
-    // Real add-to-cart logic hooks into useCart() here
+    addToCart(product);
   };
 
   return (
