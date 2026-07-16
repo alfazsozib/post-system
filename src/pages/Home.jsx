@@ -5,7 +5,7 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import useCart from "../hooks/useCart";
-import useDebounce from "../hooks/useDebounce";
+import useDebounce from "../hooks/useDebounce.js";
 import {
   getCategories,
   getProducts,
