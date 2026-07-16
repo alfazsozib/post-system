@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { formatPrice } from "../../lib/cartUtils";
+import { formatPrice } from "../lib/utils";
 
 const CartItemRow = ({ item, onUpdateQuantity, onRemove }) => {
   return (

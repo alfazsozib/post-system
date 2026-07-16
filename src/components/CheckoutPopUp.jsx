@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { formatPrice } from "../../lib/cartUtils";
+import { formatPrice } from "../lib/utils";
 
 const CheckoutPopUp = ({
   open,

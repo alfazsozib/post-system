@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CartItemRow from "../components/CartItemRow";
+import CheckoutModal from "../components/CheckoutPopUp";
 import Navbar from "../components/Navbar";
-import CartItemRow from "../components/cart/CartItemRow";
-import CheckoutModal from "../components/cart/CheckoutModal";
-import OrderSummary from "../components/cart/OrderSummary";
+import OrderSummary from "../components/OrderSummary";
 import useCart from "../hooks/useCart";
 import { postOrder } from "../lib/api";
 
@@ -24,13 +24,15 @@ const Cart = () => {
     setIsModalOpen(true);
   };
 
+  console.log(cartItems);
+
   const handleConfirmOrder = async () => {
     setIsSubmitting(true);
     setSubmitError("");
 
     try {
       await postOrder({
-        items: cartItems.map((item) => ({
+        items: cartItems?.map((item) => ({
           id: item.id,
           quantity: item.quantity,
         })),
@@ -51,14 +53,14 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar cartCount={cartItems.length} />
+      <Navbar cartCount={cartItems?.length || 0} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="font-['Fraunces'] text-3xl text-[#211F1A] mb-8">
           Your cart
         </h1>
 
-        {cartItems.length === 0 ? (
+        {cartItems?.length === 0 ? (
           <div className="text-center py-20 border border-dashed border-[#211F1A]/20 rounded-lg">
             <ShoppingBag className="w-10 h-10 mx-auto text-[#211F1A]/30 mb-3" />
             <p className="text-[#211F1A]/60 mb-4">Your cart is empty.</p>
@@ -72,7 +74,7 @@ const Cart = () => {
         ) : (
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              {cartItems.map((item) => (
+              {cartItems?.map((item) => (
                 <CartItemRow
                   key={item.id}
                   item={item}

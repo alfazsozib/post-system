@@ -7,7 +7,7 @@ import {
   calculateSubtotal,
   calculateVAT,
   formatPrice,
-} from "../../lib/cartUtils";
+} from "../lib/utils";
 
 const OrderSummary = ({ cartItems, onCheckout }) => {
   const [couponCode, setCouponCode] = useState("");
@@ -79,7 +79,7 @@ const OrderSummary = ({ cartItems, onCheckout }) => {
 
       <Button
         className="w-full bg-[#211F1A] hover:bg-[#B4491F]"
-        disabled={cartItems.length === 0}
+        disabled={cartItems?.length === 0}
         onClick={() =>
           onCheckout({ subtotal, vat, discount, grandTotal, appliedCode })
         }

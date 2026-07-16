@@ -22,6 +22,7 @@ const HomePage = () => {
   const [error, setError] = useState("");
 
   const { cartItem, addToCart } = useCart();
+  console.log(cartItem);
 
   const cartCount = cartItem.reduce((sum, item) => sum + item.quantity, 0);
 
