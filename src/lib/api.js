@@ -51,7 +51,7 @@ export const getProductsByCategory = async (category) =>{
 
 export const getProductById = async(id) =>{
   try {
-      const getProductByIdRes = await axios.get(`https://dummyjson.com/products/products/${id}`)
+      const getProductByIdRes = await axios.get(`https://dummyjson.com/products/${id}`)
       return getProductByIdRes.data
   } catch (err) {
     console.log(`Error Found: ${err}`)    

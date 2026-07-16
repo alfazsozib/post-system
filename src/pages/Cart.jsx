@@ -43,7 +43,7 @@ const Cart = () => {
 
       clearCart();
       setIsModalOpen(false);
-      navigate("/order-confirmed");
+      navigate("/");
     } catch (err) {
       console.error("Failed to place order:", err);
       setSubmitError(
