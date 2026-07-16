@@ -42,7 +42,6 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    // addToCart adds one unit at a time, so call it once per selected quantity
     for (let i = 0; i < quantity; i++) {
       addToCart(product);
     }
