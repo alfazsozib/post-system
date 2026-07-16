@@ -23,13 +23,10 @@ const HomePage = () => {
 
   const { cartItems, addToCart } = useCart();
 
-  console.log(cartItems);
-
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const debouncedQuery = useDebounce(searchQuery, 300);
 
-  // Load categories once for the filter dropdown
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -43,7 +40,6 @@ const HomePage = () => {
     fetchCategories();
   }, []);
 
-  // Re-fetch products whenever the search query or category changes.
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -83,13 +79,14 @@ const HomePage = () => {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-          <h2 className="font-['Fraunces'] text-2xl sm:text-3xl text-[#211F1A]">
+          <h2 className="font-['Fraunces'] text-2xl sm:text-3xl text-foreground">
             Products
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <div className="relative sm:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#211F1A]/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
               <Input
                 type="text"
                 placeholder="Search products..."
@@ -102,9 +99,10 @@ const HomePage = () => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="sm:w-48 border border-[#211F1A]/20 rounded-md px-3 py-2 text-sm bg-white text-[#211F1A]"
+              className="sm:w-48 rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
             >
               <option value="all">All categories</option>
+
               {categories.map((category) => (
                 <option key={category.slug} value={category.slug}>
                   {category.name}
@@ -115,15 +113,17 @@ const HomePage = () => {
         </div>
 
         {loading ? (
-          <p className="text-center text-[#211F1A]/50 py-12">Loading menu...</p>
+          <p className="py-12 text-center text-muted-foreground">
+            Loading menu...
+          </p>
         ) : error ? (
-          <p className="text-center text-red-500 py-12">{error}</p>
+          <p className="py-12 text-center text-red-500">{error}</p>
         ) : products.length === 0 ? (
-          <p className="text-center text-[#211F1A]/50 py-12">
+          <p className="py-12 text-center text-muted-foreground">
             No products found. Try a different search or category.
           </p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard
                 key={product.id}

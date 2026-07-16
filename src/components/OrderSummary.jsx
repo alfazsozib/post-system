@@ -33,22 +33,22 @@ const OrderSummary = ({ cartItems, onCheckout }) => {
   };
 
   return (
-    <div className="bg-[#FAF7F0] border border-[#211F1A]/10 rounded-lg p-5">
-      <h2 className="font-['Fraunces'] text-lg text-[#211F1A] mb-4">
+    <div className="bg-background border border-[#211F1A]/10 rounded-lg p-5">
+      <h2 className="font-['Fraunces'] text-lg text-foreground mb-4">
         Order summary
       </h2>
 
       <div className="space-y-2 text-sm mb-4">
-        <div className="flex justify-between text-[#211F1A]/70">
+        <div className="flex justify-between text-foreground/70">
           <span>Subtotal</span>
           <span>{formatPrice(subtotal)}</span>
         </div>
-        <div className="flex justify-between text-[#211F1A]/70">
+        <div className="flex justify-between text-forground/70">
           <span>VAT (5%)</span>
           <span>{formatPrice(vat)}</span>
         </div>
         {discount > 0 && (
-          <div className="flex justify-between text-[#4B5D46]">
+          <div className="flex justify-between text-foreground">
             <span>Coupon ({appliedCode.toUpperCase()})</span>
             <span>-{formatPrice(discount)}</span>
           </div>
@@ -71,14 +71,14 @@ const OrderSummary = ({ cartItems, onCheckout }) => {
       )}
 
       <div className="flex justify-between items-center border-t border-[#211F1A]/10 pt-4 mb-4">
-        <span className="font-medium text-[#211F1A]">Total</span>
-        <span className="font-medium text-lg text-[#211F1A]">
+        <span className="font-medium text-forground">Total</span>
+        <span className="font-medium text-lg text-forground">
           {formatPrice(grandTotal)}
         </span>
       </div>
 
       <Button
-        className="w-full bg-[#211F1A] hover:bg-[#B4491F]"
+        className="w-full border border-foreground text-foreground bg-background hover:bg-[#B4491F]"
         disabled={cartItems?.length === 0}
         onClick={() =>
           onCheckout({ subtotal, vat, discount, grandTotal, appliedCode })

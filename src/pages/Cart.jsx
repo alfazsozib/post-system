@@ -59,16 +59,16 @@ const Cart = () => {
       <Navbar cartCount={cartCount || 0} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="font-['Fraunces'] text-3xl text-[#211F1A] mb-8">
+        <h1 className="font-['Fraunces'] text-3xl text-forground mb-8">
           Your cart
         </h1>
 
         {cartItems?.length === 0 ? (
-          <div className="text-center py-20 border border-dashed border-[#211F1A]/20 rounded-lg">
-            <ShoppingBag className="w-10 h-10 mx-auto text-[#211F1A]/30 mb-3" />
-            <p className="text-[#211F1A]/60 mb-4">Your cart is empty.</p>
+          <div className="text-center py-20 border border-dashed border-forground rounded-lg">
+            <ShoppingBag className="w-10 h-10 mx-auto text-forground mb-3" />
+            <p className="text-forground mb-4">Your cart is empty.</p>
             <Button
-              className="bg-[#211F1A] hover:bg-[#B4491F]"
+              className="bg-background hover:bg-[#B4491F]"
               onClick={() => navigate("/")}
             >
               Browse menu

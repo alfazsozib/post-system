@@ -4,17 +4,17 @@ import { formatPrice } from "../lib/utils";
 
 const CartItemRow = ({ item, onUpdateQuantity, onRemove }) => {
   return (
-    <div className="flex items-center gap-4 py-4 border-b border-[#211F1A]/10">
+    <div className="flex items-center gap-4 py-4 border-b border-background/10">
       <img
         src={item.thumbnail}
         alt={item.title}
-        className="w-16 h-16 rounded object-cover bg-[#211F1A]/5"
+        className="w-16 h-16 rounded object-cover bg-background/5"
       />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-[#211F1A] truncate">
+        <p className="text-sm font-medium text-forground truncate">
           {item.title}
         </p>
-        <p className="text-xs text-[#211F1A]/60">
+        <p className="text-xs text-forground/60">
           {formatPrice(item.price)} each
         </p>
       </div>
@@ -42,12 +42,12 @@ const CartItemRow = ({ item, onUpdateQuantity, onRemove }) => {
         </Button>
       </div>
 
-      <span className="text-sm font-medium text-[#211F1A] w-16 text-right">
+      <span className="text-sm font-medium text-forground w-16 text-right">
         {formatPrice(item.price * item.quantity)}
       </span>
       <button
         onClick={() => onRemove(item.id)}
-        className="text-[#211F1A]/40 hover:text-red-500 transition-colors"
+        className="text-forground/40 hover:text-red-500 transition-colors"
         aria-label={`Remove ${item.title} from cart`}
       >
         <Trash2 className="w-4 h-4" />

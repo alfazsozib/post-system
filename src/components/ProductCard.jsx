@@ -6,30 +6,33 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, onAddToCart }) => {
   const { title, price, thumbnail, rating, stock, category } = product;
+
   const isOutOfStock = stock === 0;
   const isLowStock = stock > 0 && stock <= 5;
 
   return (
-    <Card className="overflow-hidden border-[#211F1A]/10 hover:shadow-md transition-shadow">
+    <Card className="overflow-hidden border-border transition-shadow hover:shadow-md">
       <Link to={`/products/${product.id}`}>
-        <div className="relative bg-[#211F1A]/5 aspect-square">
+        <div className="relative aspect-square bg-muted">
           <img
             src={thumbnail}
             alt={title}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
-          <Badge className="absolute top-2 left-2 bg-[#FAF7F0] text-[#211F1A] hover:bg-[#FAF7F0]">
+
+          <Badge className="absolute left-2 top-2 bg-secondary text-secondary-foreground hover:bg-secondary">
             {category}
           </Badge>
         </div>
+
         <CardContent className="p-4">
-          <h3 className="font-medium text-sm text-[#211F1A] line-clamp-1 mb-1">
+          <h3 className="mb-1 line-clamp-1 text-sm font-medium text-foreground">
             {title}
           </h3>
 
-          <div className="flex items-center justify-between text-xs text-[#211F1A]/60">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
-              <Star className="w-3.5 h-3.5 fill-[#C99A2E] text-[#C99A2E]" />
+              <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
               <span>{rating}</span>
             </div>
 
@@ -38,7 +41,7 @@ const ProductCard = ({ product, onAddToCart }) => {
                 Out of stock
               </Badge>
             ) : isLowStock ? (
-              <span className="text-[#B4491F]">Only {stock} left</span>
+              <span className="text-orange-500">Only {stock} left</span>
             ) : (
               <span>{stock} in stock</span>
             )}
@@ -46,8 +49,9 @@ const ProductCard = ({ product, onAddToCart }) => {
         </CardContent>
       </Link>
 
-      <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <span className="font-medium text-[#211F1A]">${price}</span>
+      <CardFooter className="flex items-center justify-between p-4 pt-0">
+        <span className="font-medium text-foreground">${price}</span>
+
         <Button
           size="sm"
           disabled={isOutOfStock}
@@ -55,9 +59,8 @@ const ProductCard = ({ product, onAddToCart }) => {
             e.stopPropagation();
             onAddToCart(product);
           }}
-          className="bg-[#211F1A] hover:bg-[#B4491F]"
         >
-          <Plus className="w-4 h-4 mr-1" />
+          <Plus className="mr-1 h-4 w-4" />
           Add
         </Button>
       </CardFooter>
