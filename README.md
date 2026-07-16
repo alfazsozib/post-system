@@ -1,41 +1,95 @@
-# DivergentPOS
+# Restaurant POS — New Order Module
 
-A simple Point of Sale (POS) web application built with React.  
-This project allows users to browse products, search items, filter by category, view product details, and manage a shopping cart.
+A frontend-only Restaurant POS built for the Divergent Technologies frontend assessment. Lets a user browse a product menu, search and filter it, view product details, manage a cart, apply coupons, and place an order — all backed by the public [DummyJSON](https://dummyjson.com) API.
 
-I built this project as an assignment to improve my understanding of React concepts, API integration, state management, and modern UI development practices.
+## Tech stack
 
-## 🚀 Features
-
-- Browse products
-- Search products
-- Filter products by category
-- View product details
-- Add products to cart
-- Increase/decrease cart quantity
-- Theme switcher (Light/Dark/System mode)
-- Responsive design for mobile and desktop
-
-## 🛠️ Technologies Used
-
-- React.js
-- Vite
+- React (Vite)
+- JavaScript
+- React Router (`react-router-dom`)
 - Tailwind CSS
-- Shadcn UI
-- React Router
-- Lucide React Icons
-- DummyJSON API
-- Local Storage
+- shadcn/ui
+- Axios
 
-## 📂 Project Structure
+No custom backend — all data comes directly from `https://dummyjson.com`.
 
-src
-├── assets # Keep images and icons
-├── components # Reusable UI components
-├── pages # Application pages
-├── hooks # Custom React hooks
-├── context # React context (theme management)
-├── lib # API functions and utilities
-└── App.jsx
-└── main.jsx
-└── index.css
+## Features implemented
+
+- Product grid with image, name, price, rating, stock, and category
+- Debounced search (300ms) by product name
+- Category filter (native `<select>`, populated from `GET /products/categories`)
+- Product details page (`GET /products/{id}`)
+- Cart: add / remove / update quantity, persisted to `localStorage`
+- Order summary: subtotal, VAT (5%), coupon discount, grand total
+- Coupon support: `SAVE10` (10% off), `SAVE20` (20% off), `WELCOME` (flat $5 off)
+- Checkout confirmation modal before order submission
+- Order submission via `POST /carts/add`
+- Loading, empty, and error states across product grid, search, and cart
+- Responsive layout (mobile / tablet / desktop)
+- Dark mode toggle (bonus)
+
+## Not implemented
+
+- Infinite scroll
+- Virtualized list
+- Wishlist
+- Keyboard shortcuts
+- Unit tests
+
+Left out due to the assessment's time constraint — prioritized the required functional list over bonus features.
+
+## Assumptions
+
+The brief didn't specify exact coupon amounts or VAT rate, so I made the following calls, documented here and in `lib/cartUtils.js`:
+
+- VAT rate: 5% of subtotal
+- `SAVE10` → 10% off subtotal
+- `SAVE20` → 20% off subtotal
+- `WELCOME` → flat $5 off subtotal (capped so it can't exceed the subtotal)
+- A non-empty search query takes priority over the category filter, rather than combining both DummyJSON's search and category-filter endpoints are separate, so combining them would need extra client-side filtering that felt out of scope
+
+## Project structure
+
+```
+src/
+  components/
+    ui/              → shadcn primitives
+    product/         → ProductCard
+    cart/            → CartItemRow, OrderSummary, CheckoutModal
+    Navbar.jsx
+    Hero.jsx
+    mode-toggle.jsx
+  context/
+    CartContext.jsx
+    ThemeContext.jsx
+  hooks/
+    useCart.js
+    useTheme.js
+    useDebounce.js
+  lib/
+    api.js           → all API calls live here
+    cartUtils.js      → subtotal / VAT / coupon calculations
+  pages/
+    Home.jsx
+    Cart.jsx
+    ProductDetails.jsx
+```
+
+## Setup instructions
+
+1. Clone the repo:
+   ```
+   git clone https://github.com/alfazsozib/pos-system.git
+   cd pos-system
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Run the dev server:
+   ```
+   npm run dev
+   ```
+4. Open the URL shown in the terminal (usually `http://localhost:5173`).
+
+No environment variables are required — the app calls `https://dummyjson.com` directly.
