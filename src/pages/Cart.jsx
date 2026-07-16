@@ -68,7 +68,7 @@ const Cart = () => {
             <ShoppingBag className="w-10 h-10 mx-auto text-forground mb-3" />
             <p className="text-forground mb-4">Your cart is empty.</p>
             <Button
-              className="bg-background hover:bg-[#B4491F]"
+              className="bg-background border border-foreground text-foreground hover:bg-[#B4491F]"
               onClick={() => navigate("/")}
             >
               Browse menu
