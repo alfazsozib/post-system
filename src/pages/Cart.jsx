@@ -18,6 +18,9 @@ const Cart = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  const cartCount =
+    cartItems?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+
   const handleCheckout = (summary) => {
     setCheckoutSummary(summary);
     setSubmitError("");
@@ -40,7 +43,7 @@ const Cart = () => {
 
       clearCart();
       setIsModalOpen(false);
-      navigate("/order-confirmed"); // or show a success toast here instead
+      navigate("/order-confirmed");
     } catch (err) {
       console.error("Failed to place order:", err);
       setSubmitError(
@@ -53,7 +56,7 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar cartCount={cartItems?.length || 0} />
+      <Navbar cartCount={cartCount || 0} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="font-['Fraunces'] text-3xl text-[#211F1A] mb-8">
@@ -72,7 +75,7 @@ const Cart = () => {
             </Button>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="md:col-span-2">
               {cartItems?.map((item) => (
                 <CartItemRow
