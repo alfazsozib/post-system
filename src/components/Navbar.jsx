@@ -47,23 +47,6 @@ const Navbar = ({ cartCount }) => {
           </button>
         </div>
       </nav>
-
-      {/* Mobile nav panel */}
-      {/* {isMenuOpen && (
-        <ul className="md:hidden flex flex-col gap-1 px-4 pb-4 bg-[#FAF7F0] border-t border-[#211F1A]/10">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              <Link
-                to={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block py-2 text-sm font-medium text-[#211F1A]/80 hover:text-[#B4491F]"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )} */}
     </header>
   );
 };

@@ -48,3 +48,14 @@ export const getProductsByCategory = async (category) =>{
     }
   
 }
+
+export const postOrder = (payload) => {
+  try {
+  axios.post("https://dummyjson.com/carts/add", payload).then(res => res.data);
+    
+  } catch (err) {
+    console.log(`Error Found ${err}`)
+  }
+}
+
+
