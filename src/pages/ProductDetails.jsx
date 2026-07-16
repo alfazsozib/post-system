@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Minus, Plus, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import useCart from "../hooks/useCart";
 import { getProductById } from "../lib/api";
@@ -51,6 +52,7 @@ const ProductDetails = () => {
     return (
       <>
         <Navbar cartCount={cartCount} />
+
         <p className="text-center text-[#211F1A]/50 py-24">
           Loading product...
         </p>
@@ -62,6 +64,7 @@ const ProductDetails = () => {
     return (
       <>
         <Navbar cartCount={cartCount} />
+
         <div className="text-center py-24">
           <p className="text-red-500 mb-4">{error || "Product not found."}</p>
           <Button variant="outline" onClick={() => navigate("/")}>
@@ -87,6 +90,7 @@ const ProductDetails = () => {
   return (
     <>
       <Navbar cartCount={cartCount} />
+      <Hero />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <button

@@ -13,9 +13,6 @@ const Navbar = ({ cartCount }) => {
     <header className="sticky top-0 z-50 bg-[#FAF7F0]/95 backdrop-blur-sm border-b border-[#211F1A]/10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-[#B4491F] flex items-center justify-center text-[#FAF7F0] font-bold text-sm">
-            D
-          </span>
           <span className="font-['Fraunces'] text-xl text-[#211F1A]">
             Divergent<span className="text-[#B4491F]">POS</span>
           </span>
