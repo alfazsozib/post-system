@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 
 
 export const CartContext = createContext(null);
@@ -55,4 +55,41 @@ const cartReducer = (state, action) =>{
         default:
             break
     }
+}
+
+
+export const CartProvider = ({child}) =>{
+    const [cartItem, dispatch] = useReducer(cartReducer, [], loadInitialCart)
+
+    // whenever cart changes sync with local storage 
+
+    useEffect(()=>{
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItem))
+        } catch (err) {
+            console.error("Failed to save item: ", err)
+        }
+    },[cartItem])
+
+    const addToCart = (product) =>{
+        dispatch({type: "ADD_ITEM", payload: product})
+    }
+
+    const removeFromCart = (id) =>{
+        dispatch({type: "REMOVE_ITEM", payload: {id}})
+    }
+
+    const updateQuantity  = (id, quantity) =>{
+        dispatch({type: "UPDATE_QUANTITY", payload: {id, quantity}})
+    }
+
+    const clearCart = () =>{
+        dispatch({type: "CLEAR_CART"})
+    }
+
+    return (
+        <CartContext.Provider value={{cartItem, addToCart, removeFromCart, updateQuantity, clearCart}}>
+            {child}
+        </CartContext.Provider>
+    )
 }
