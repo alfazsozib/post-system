@@ -65,7 +65,7 @@ src/
   hooks/
     useCart.js
     useTheme.js
-    useDebounce.js
+    UseDebounce.js
   lib/
     api.js           → all API calls live here
     cartUtils.js      → subtotal / VAT / coupon calculations

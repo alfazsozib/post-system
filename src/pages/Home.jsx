@@ -5,7 +5,7 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import useCart from "../hooks/useCart";
-import useDebounce from "../hooks/useDebounce.js";
+import UseDebounce from "../hooks/useDebounce";
 import {
   getCategories,
   getProducts,
@@ -25,7 +25,7 @@ const HomePage = () => {
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const debouncedQuery = useDebounce(searchQuery, 300);
+  const debouncedQuery = UseDebounce(searchQuery, 300);
 
   useEffect(() => {
     const fetchCategories = async () => {
