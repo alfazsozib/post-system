@@ -56,17 +56,17 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItem, dispatch] = useReducer(cartReducer, [], loadInitialCart);
+  const [cartItems, dispatch] = useReducer(cartReducer, [], loadInitialCart);
 
   // whenever cart changes sync with local storage
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItem));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
     } catch (err) {
       console.error("Failed to save item: ", err);
     }
-  }, [cartItem]);
+  }, [cartItems]);
 
   const addToCart = (product) => {
     dispatch({ type: "ADD_ITEM", payload: product });
@@ -86,7 +86,13 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItem, addToCart, removeFromCart, updateQuantity, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

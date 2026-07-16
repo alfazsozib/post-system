@@ -66,7 +66,7 @@ const Cart = () => {
             <p className="text-[#211F1A]/60 mb-4">Your cart is empty.</p>
             <Button
               className="bg-[#211F1A] hover:bg-[#B4491F]"
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/")}
             >
               Browse menu
             </Button>

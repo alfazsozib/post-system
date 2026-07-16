@@ -21,10 +21,11 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const { cartItem, addToCart } = useCart();
-  console.log(cartItem);
+  const { cartItems, addToCart } = useCart();
 
-  const cartCount = cartItem.reduce((sum, item) => sum + item.quantity, 0);
+  console.log(cartItems);
+
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const debouncedQuery = useDebounce(searchQuery, 300);
 
